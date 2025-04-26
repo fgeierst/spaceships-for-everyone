@@ -20,11 +20,14 @@
 
 <p class="test-result">
 	{#await runTests()}
-		<span class="rotate"><Icon name="circle-dash"></Icon></span>Running tests...
+		<span class="running"><Icon name="circle-dash"></Icon></span>
+		Running tests...
 	{:then result}
-		<Icon name="check"></Icon>{result}
+		<span class="passed"><Icon name="check"></Icon></span>
+		{result}
 	{:catch error}
-		<Icon name="cross"></Icon>{error.message}
+		<span class="failed"><Icon name="cross"></Icon></span>
+		{error.message}
 	{/await}
 </p>
 
@@ -35,7 +38,17 @@
 		gap: 0.2rem;
 	}
 
-	.rotate {
+	.passed {
+		color: #66ba1c;
+		display: grid;
+	}
+	.failed {
+		color: #f87171;
+		display: grid;
+	}
+
+	.running {
+		color: #facc14;
 		display: grid;
 		animation: rotate 1.5s linear infinite;
 		@media (prefers-reduced-motion: reduce) {

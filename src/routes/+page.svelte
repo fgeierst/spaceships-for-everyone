@@ -1,12 +1,19 @@
 <script lang="ts">
 	import Playground from './Playground.svelte';
 	import type { PageProps } from './$types';
-	import { compile } from 'mdsvex';
 	import Icon from '$lib/Icon.svelte';
-	import Test from '$lib/Test.svelte';
-	import { expect } from 'chai';
 
 	let { data }: PageProps = $props();
+	let MyComponent = $state();
+	// let MyComponent = $derived.by(async () => {
+	// 	return (await import(`../lib/chapters/${data.currentChapter}.svx`)).default;
+	// });
+
+	$effect(() => {
+		import(`../lib/chapters/${data.currentChapter}.svx`).then((module) => {
+			MyComponent = module.default;
+		});
+	});
 
 	let isSolved = $state(false);
 </script>
@@ -30,27 +37,14 @@
 
 <main>
 	<section class="readme" aria-label="Readme">
-		{#await compile(data.readme) then compiled}
-			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
-			{@html compiled?.code}
-		{/await}
 		<button class="solve-button" onclick={() => (isSolved = !isSolved)} aria-pressed={isSolved}>
 			<Icon name={isSolved ? 'reset' : 'solve'}></Icon>
 			{isSolved ? 'Reset' : 'Solve'}
 		</button>
 
-		<Test
-			testcode={async () => {
-				const string = `its a string`;
-				expect(string).to.be.an('string');
-			}}
-		></Test>
-		<Test
-			testcode={async () => {
-				const string = `its a string`;
-				expect(string).to.be.an('object');
-			}}
-		></Test>
+		{#if MyComponent}
+			<MyComponent livecode={isSolved ? data.solutioncode : data.sourcecode}></MyComponent>
+		{/if}
 	</section>
 
 	<div>

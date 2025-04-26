@@ -1,0 +1,24 @@
+<script>
+	import { expect } from 'chai';
+	import Test from '$lib/Test.svelte';
+	
+	let {livecode} = $props();
+</script>
+
+# Button
+
+
+> For all user interface components, the name and role can be programmatically determined.
+[Success Criterion 4.1.2 Name, Role,
+Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
+
+<Test
+	testcode={async () => {
+		expect(livecode).to.be.an('string');
+	}}
+></Test>
+<Test
+	testcode={async () => {
+		expect(livecode).to.be.an('object');
+	}}
+></Test>
