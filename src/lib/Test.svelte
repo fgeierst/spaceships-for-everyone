@@ -1,21 +1,24 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
 	import { expect } from 'chai';
+	import test from 'node:test';
 
 	type Props = {
 		testcode?: () => Promise<void>;
 	};
-	const {
-		testcode = async () => {
-			const string = `its a string`;
-			expect(string).to.be.an('string');
-		}
-	}: Props = $props();
+	const { testcode }: Props = $props();
 
 	async function runTests() {
 		await Promise.all([new Promise((resolve) => setTimeout(resolve, 500)), testcode()]);
 		return 'Test passed.';
 	}
+
+	$effect(() => {
+		if (testcode) {
+			console.log('Running tests...', testcode);
+			runTests();
+		}
+	});
 </script>
 
 <p class="test-result">

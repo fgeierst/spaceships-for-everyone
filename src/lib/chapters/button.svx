@@ -1,7 +1,9 @@
 <script>
 	import { expect } from 'chai';
 	import Test from '$lib/Test.svelte';
-	
+	import {
+  getByRole,
+} from '@testing-library/dom'
 	let {livecode} = $props();
 </script>
 
@@ -14,6 +16,8 @@ Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 <Test
 	testcode={async () => {
+		const iframe = document.querySelector('iframe').contentDocument;
+		const button = getByRole(iframe, 'button');
 		expect(livecode).to.be.an('string');
 	}}
 ></Test>
