@@ -2,6 +2,9 @@
 	import Playground from './Playground.svelte';
 	import type { PageProps } from './$types';
 	import { compile } from 'mdsvex';
+	import Icon from '$lib/Icon.svelte';
+	import Test from '$lib/Test.svelte';
+	import { expect } from 'chai';
 
 	let { data }: PageProps = $props();
 
@@ -31,7 +34,23 @@
 			<!-- eslint-disable-next-line svelte/no-at-html-tags -->
 			{@html compiled?.code}
 		{/await}
-		<button onclick={() => (isSolved = !isSolved)}>{isSolved ? 'Reset' : 'Solve'}</button>
+		<button class="solve-button" onclick={() => (isSolved = !isSolved)} aria-pressed={isSolved}>
+			<Icon name={isSolved ? 'reset' : 'solve'}></Icon>
+			{isSolved ? 'Reset' : 'Solve'}
+		</button>
+
+		<Test
+			testcode={async () => {
+				const string = `its a string`;
+				expect(string).to.be.an('string');
+			}}
+		></Test>
+		<Test
+			testcode={async () => {
+				const string = `its a string`;
+				expect(string).to.be.an('object');
+			}}
+		></Test>
 	</section>
 
 	<div>
@@ -58,6 +77,12 @@
 		&::before {
 			opacity: 1;
 		}
+	}
+
+	.solve-button {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
 	}
 
 	main {

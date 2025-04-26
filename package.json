@@ -63,6 +63,7 @@
 	"dependencies": {
 		"@codemirror/lang-html": "^6.4.9",
 		"@codemirror/state": "^6.5.2",
+		"chai": "^5.2.0",
 		"codemirror": "^6.0.1"
 	}
 }
