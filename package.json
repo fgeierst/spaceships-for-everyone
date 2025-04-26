@@ -61,7 +61,6 @@
 		]
 	},
 	"dependencies": {
-		"playground-elements": "^0.20.0",
 		"vite-plugin-static-copy": "^2.3.1"
 	}
 }
