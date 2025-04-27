@@ -15,7 +15,7 @@
 		if (livecode) currentState = 'running';
 		setTimeout(() => {
 			runTests();
-		}, 1000);
+		}, 200);
 	});
 
 	async function runTests() {
@@ -28,8 +28,6 @@
 		}
 	}
 </script>
-
-Testcode: {JSON.stringify(testcode)}
 
 <p class="test-result">
 	{#if currentState === 'running'}
