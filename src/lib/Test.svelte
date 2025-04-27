@@ -1,43 +1,51 @@
 <script lang="ts">
 	import Icon from '$lib/Icon.svelte';
-	import { expect } from 'chai';
-	import test from 'node:test';
 
 	type Props = {
 		testcode?: () => Promise<void>;
+		livecode?: string;
 	};
-	const { testcode }: Props = $props();
+	let { testcode, livecode }: Props = $props();
 
-	async function runTests() {
-		await Promise.all([new Promise((resolve) => setTimeout(resolve, 500)), testcode()]);
-		return 'Test passed.';
-	}
+	type State = 'running' | 'passed' | 'failed';
+	let currentState: State = $state('running');
+	let msg = $state();
 
 	$effect(() => {
-		if (testcode) {
-			console.log('Running tests...', testcode);
+		if (livecode) currentState = 'running';
+		setTimeout(() => {
 			runTests();
-		}
+		}, 1000);
 	});
+
+	async function runTests() {
+		try {
+			testcode?.();
+			currentState = 'passed';
+		} catch (error) {
+			currentState = 'failed';
+			msg = error instanceof Error ? error.message : 'Unknown error';
+		}
+	}
 </script>
 
+Testcode: {JSON.stringify(testcode)}
+
 <p class="test-result">
-	{#await runTests()}
+	{#if currentState === 'running'}
 		<span class="running"><Icon name="circle-dash"></Icon></span>
 		Running tests...
-	{:then result}
-		<span class="passed"><Icon name="check"></Icon></span>
-		{result}
-	{:catch error}
-		<span class="failed"><Icon name="cross"></Icon></span>
-		{error.message}
-	{/await}
+	{:else if currentState === 'passed'}
+		<span class="passed"><Icon name="check"></Icon></span> Test passed.
+	{:else if currentState === 'failed'}
+		<span class="failed"><Icon name="cross"></Icon></span> Test failed: {msg}
+	{/if}
 </p>
 
 <style>
 	.test-result {
 		display: flex;
-		align-items: center;
+		align-items: start;
 		gap: 0.2rem;
 	}
 

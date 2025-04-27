@@ -37,14 +37,13 @@
 
 <main>
 	<section class="readme" aria-label="Readme">
+		{#if MyComponent}
+			<MyComponent livecode={isSolved ? data.solutioncode : data.sourcecode}></MyComponent>
+		{/if}
 		<button class="solve-button" onclick={() => (isSolved = !isSolved)} aria-pressed={isSolved}>
 			<Icon name={isSolved ? 'reset' : 'solve'}></Icon>
 			{isSolved ? 'Reset' : 'Solve'}
 		</button>
-
-		{#if MyComponent}
-			<MyComponent livecode={isSolved ? data.solutioncode : data.sourcecode}></MyComponent>
-		{/if}
 	</section>
 
 	<div>
@@ -77,6 +76,7 @@
 		display: flex;
 		align-items: center;
 		gap: 0.4rem;
+		margin-left: auto;
 	}
 
 	main {
