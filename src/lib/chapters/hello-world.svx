@@ -1,3 +1,26 @@
+<script>
+	import { expect } from 'chai';
+	import Test from '$lib/Test.svelte';
+	import { getByRole } from '@testing-library/dom'
+	let {livecode} = $props();
+</script>
+
 # The accessibility panel
 
 While this looks like a perfectly normal heading, something is not quite right. Open the browser dev tools and inspect the heading.
+
+## Test 
+```js
+const heading = getByRole(iframe, 'heading', {level: 1});
+expect(heading).to.exist;
+```
+
+<Test
+	{livecode}
+	testcode={() => {
+		const iframe = document.querySelector('iframe').contentDocument;
+		const heading = getByRole(iframe, 'heading', {level: 1});
+		expect(heading).to.exist;
+	}}
+>
+</Test>
