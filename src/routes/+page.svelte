@@ -2,16 +2,14 @@
 	import Playground from './Playground.svelte';
 	import type { PageProps } from './$types';
 	import Icon from '$lib/Icon.svelte';
+	import type { Component } from 'svelte';
 
 	let { data }: PageProps = $props();
-	let MyComponent = $state();
-	// let MyComponent = $derived.by(async () => {
-	// 	return (await import(`../lib/chapters/${data.currentChapter}.svx`)).default;
-	// });
+	let Readme: Component | undefined = $state();
 
 	$effect(() => {
 		import(`../lib/chapters/${data.currentChapter}.svx`).then((module) => {
-			MyComponent = module.default;
+			Readme = module.default;
 		});
 	});
 
@@ -37,8 +35,8 @@
 
 <main>
 	<section class="readme" aria-label="Readme">
-		{#if MyComponent}
-			<MyComponent livecode={isSolved ? data.solutioncode : data.sourcecode}></MyComponent>
+		{#if Readme}
+			<Readme livecode={isSolved ? data.solutioncode : data.sourcecode}></Readme>
 		{/if}
 		<button class="solve-button" onclick={() => (isSolved = !isSolved)} aria-pressed={isSolved}>
 			<Icon name={isSolved ? 'reset' : 'solve'}></Icon>
