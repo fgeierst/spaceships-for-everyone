@@ -1,6 +1,8 @@
 import type { PageServerLoad } from './$types';
 import fs from 'fs';
 
+export const prerender = true;
+
 export const load = (async () => {
 	const files = fs.readdirSync('static/chapters');
 	const chapters: string[] = [];
