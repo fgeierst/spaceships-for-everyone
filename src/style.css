@@ -1,0 +1,18 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+html {
+	font-family: system-ui;
+}
+
+body {
+	margin: 0;
+}
+
+:focus-visible {
+	outline: 1.5px solid black;
+	outline-offset: 1px;
+	border-radius: 1.5px;
+}

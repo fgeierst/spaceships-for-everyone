@@ -43,21 +43,30 @@
 	});
 </script>
 
-<div class="side-by-side">
-	<section aria-label="Editor">
-		<div class="editor" id={`editor-${id}`}></div>
-	</section>
-	<section aria-label="Preview">
-		<iframe title="Preview" class="preview" srcdoc={previewSourceCode}></iframe>
-	</section>
+<div class="container">
+	<div class="side-by-side">
+		<section aria-label="Editor">
+			<div class="editor" id={`editor-${id}`}></div>
+		</section>
+		<section aria-label="Preview">
+			<iframe title="Preview" class="preview" srcdoc={previewSourceCode}></iframe>
+		</section>
+	</div>
 </div>
 
 <style>
+	.container {
+		container-type: inline-size;
+	}
+
 	.side-by-side {
 		display: grid;
-		grid-template-columns: 1fr 1fr;
-		gap: 1rem;
+
+		@container (min-width: 600px) {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
+
 	.preview,
 	.editor {
 		width: 100%;
@@ -65,8 +74,16 @@
 	}
 
 	.editor {
-		border-inline-end: 1px solid #ccc;
-		padding-inline-end: 0.5rem;
+		border-block-end: 1px solid #ccc;
+
+		@container (min-width: 600px) {
+			border-block-end: none;
+			border-inline-end: 1px solid #ccc;
+		}
+
+		:global(.cm-focused) {
+			outline: none;
+		}
 	}
 
 	.preview {

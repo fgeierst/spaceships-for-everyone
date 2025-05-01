@@ -1,6 +1,6 @@
 <script lang="ts">
-	type Props = {
-		name?: 'check' | 'cross' | 'circle-dash' | 'reset' | 'solve';
+	export type Props = {
+		name?: 'check' | 'cross' | 'circle-dash' | 'reset' | 'solve' | 'triangle-down';
 		size?: number;
 		alt?: string;
 	};
@@ -39,6 +39,10 @@
 	{:else if name === 'solve'}
 		<path
 			d="M29.414 24L12 6.586a2.05 2.05 0 0 0-2.828 0L6.586 9.172a2 2 0 0 0 0 2.828l17.413 17.414a2 2 0 0 0 2.828 0l2.587-2.586a2 2 0 0 0 0-2.828M8 10.586L10.586 8l5 5l-2.587 2.587zM25.413 28l-11-10.999L17 14.414l11 11ZM2 16l2-2l2 2l-2 2zM14 4l2-2l2 2l-2 2zM2 4l2-2l2 2l-2 2z"
+		/>
+	{:else if name === 'triangle-down'}
+		<path
+			d="M29.02 3c.569 0 .978.477.98 1c0 .163-.039.33-.125.489l-13.02 23.986c-.186.344-.52.525-.855.525s-.67-.181-.856-.525L2.124 4.49A1 1 0 0 1 2 4c.002-.523.411-1 .98-1z"
 		/>
 	{:else}{/if}
 </svg>

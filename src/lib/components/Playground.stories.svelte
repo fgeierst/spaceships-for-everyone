@@ -4,7 +4,10 @@
 
 	const { Story } = defineMeta({
 		title: 'Playground',
-		component: Playground
+		component: Playground,
+		args: {
+			sourcecode: '<button>Click me</button>'
+		}
 	});
 </script>
 

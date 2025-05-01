@@ -1,15 +1,15 @@
 <script>
 	import { expect } from 'chai';
-	import Test from '$lib/Test.svelte';
+	import Test from '$lib/components/Test.svelte';
 	import { getByRole } from '@testing-library/dom'
 	let {livecode} = $props();
 </script>
 
-# Web Components
+# 0.3 Web Components
 
 What do you think is the the accessible name of this text input?
 
-## Test 
+<!-- ## Test 
 ```js
 const shadowRoot = iframe.querySelector('my-input').shadowRoot;
 const input = getByRole(shadowRoot, 'textbox', {name: 'First Name'});
@@ -25,4 +25,4 @@ expect(input).to.exist;
 		expect(input).to.exist;
 	}}
 >
-</Test>
+</Test> -->

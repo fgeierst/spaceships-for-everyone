@@ -1,16 +1,16 @@
 <script>
 	import { expect } from 'chai';
-	import Test from '$lib/Test.svelte';
+	import Test from '$lib/components/Test.svelte';
 	import { getByRole } from '@testing-library/dom'
 	let {livecode} = $props();
 </script>
 
-# Button
+# 0.2 Button
 
 For all user interface components, the name and role can be programmatically determined. — [Success Criterion 4.1.2 Name, Role,Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 
-## Test 
+<!-- ## Test 
 ```js
 const button = getByRole(iframe, 'button', {name: 'Click me'});
 expect(button).to.exist;
@@ -24,4 +24,4 @@ expect(button).to.exist;
 		expect(button).to.exist;
 	}}
 >
-</Test>
+</Test> -->
