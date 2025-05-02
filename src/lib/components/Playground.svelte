@@ -1,53 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { EditorView, basicSetup } from 'codemirror';
-	import { html } from '@codemirror/lang-html';
+	import Editor from './Editor.svelte';
 	import { PreviewStyles } from '$lib/preview-styles';
 
-	const id = $props.id();
 	const { sourcecode } = $props();
 	let livecode = $state(sourcecode);
-	let editor: EditorView | null = null;
+
 	let previewSourceCode = $derived(`${PreviewStyles} ${livecode}`);
-
-	onMount(() => {
-		editor = new EditorView({
-			doc: sourcecode,
-			extensions: [
-				basicSetup,
-				html(),
-				EditorView.lineWrapping,
-				EditorView.updateListener.of((update) => {
-					if (update.docChanged) livecode = update.state.doc.toString();
-				})
-			],
-
-			parent: document.querySelector(`#editor-${id}`)!
-		});
-
-		return () => {
-			editor?.destroy();
-		};
-	});
-
-	$effect(() => {
-		if (editor) {
-			editor.dispatch({
-				changes: {
-					from: 0,
-					to: editor.state.doc.length,
-					insert: sourcecode
-				}
-			});
-		}
-	});
 </script>
 
 <div class="container">
 	<div class="side-by-side">
-		<section aria-label="Editor">
-			<div class="editor" id={`editor-${id}`}></div>
-		</section>
+		<Editor {sourcecode} bind:livecode />
 		<section aria-label="Preview">
 			<iframe title="Preview" class="preview" srcdoc={previewSourceCode}></iframe>
 		</section>

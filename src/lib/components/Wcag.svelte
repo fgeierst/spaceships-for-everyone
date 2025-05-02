@@ -29,7 +29,7 @@
 {:else if variant === 'card'}
 	<div class="card">
 		<span class="logo">WCAG {criterion.level}</span>
-		<a href={criterion.url}>{criterion.ref_id} {criterion.title}</a>
+		<a href={criterion.url} target="_blank">{criterion.ref_id} {criterion.title}</a>
 		<p>{criterion.description}</p>
 		{#if criterion.special_cases}
 			<ul>
