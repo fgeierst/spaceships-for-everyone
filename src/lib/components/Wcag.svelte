@@ -28,7 +28,8 @@
 	</a>
 {:else if variant === 'card'}
 	<div class="card">
-		<a href={criterion.url}>{criterion.ref_id} {criterion.title} ({criterion.level})</a>
+		<span class="logo">WCAG {criterion.level}</span>
+		<a href={criterion.url}>{criterion.ref_id} {criterion.title}</a>
 		<p>{criterion.description}</p>
 		{#if criterion.special_cases}
 			<ul>
@@ -41,9 +42,24 @@
 {/if}
 
 <style>
+	.logo {
+		float: right;
+		border: solid #ccc;
+		border-width: 0 0 1px 1px;
+		margin: -0.5rem -0.5rem 0 0;
+		padding: 0.3rem;
+		font-size: 70%;
+		font-weight: 600;
+	}
+
+	a {
+		color: inherit;
+	}
+
 	.card {
 		border: 1px solid #ccc;
 		border-radius: 0.3rem;
 		padding: 0.5rem;
+		margin-block-end: 1rem;
 	}
 </style>

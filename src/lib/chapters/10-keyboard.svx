@@ -4,4 +4,4 @@ import Wcag from '$lib/components/Wcag.svelte'
 
 # 1.0 Keyboard
 
-- <Wcag ref_id="2.1.1" />
+<Wcag ref_id="2.1.1" variant="card" />
