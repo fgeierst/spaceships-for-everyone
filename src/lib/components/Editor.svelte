@@ -2,8 +2,14 @@
 	import { onMount } from 'svelte';
 	import { EditorView, basicSetup } from 'codemirror';
 	import { html } from '@codemirror/lang-html';
+	import { javascript } from '@codemirror/lang-javascript';
 
-	let { sourcecode, livecode = $bindable() } = $props();
+	type Props = {
+		sourcecode: string;
+		livecode?: string;
+		lang?: 'html' | 'javascript';
+	};
+	let { sourcecode, livecode = $bindable(), lang = 'html' } = $props();
 	const id = $props.id();
 	let editor: EditorView | null = null;
 
@@ -12,7 +18,7 @@
 			doc: sourcecode,
 			extensions: [
 				basicSetup,
-				html(),
+				lang === 'html' ? html() : javascript(),
 				EditorView.lineWrapping,
 				EditorView.updateListener.of((update) => {
 					if (update.docChanged) livecode = update.state.doc.toString();
