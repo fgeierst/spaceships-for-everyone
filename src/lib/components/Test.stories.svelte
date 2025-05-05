@@ -1,8 +1,6 @@
 <script module>
 	import { defineMeta } from '@storybook/addon-svelte-csf';
 	import Test from '$lib/components/Test.svelte';
-	import { getByRole } from '@testing-library/dom';
-	import { expect } from 'chai';
 
 	const { Story } = defineMeta({
 		title: 'Test',

@@ -2,7 +2,7 @@
 	import type { ChapterId } from '$lib/chapters';
 	import type { Component } from 'svelte';
 
-	let { id }: { id: ChapterId } = $props();
+	let { id, livecode }: { id: ChapterId; livecode: string } = $props();
 	let Markdown: Component | undefined = $state();
 
 	$effect(() => {
@@ -18,7 +18,7 @@
 
 <section aria-label="Docs">
 	{#if Markdown}
-		<Markdown />
+		<Markdown {livecode} />
 	{/if}
 </section>
 

@@ -8,6 +8,7 @@
 
 	let { data }: { data: PageData } = $props();
 	let isSolved = $state(false);
+	let livecode = $state('');
 </script>
 
 <svelte:head><title>{data.current.title} - Spaceships for Everyone</title></svelte:head>
@@ -16,11 +17,11 @@
 
 <main>
 	<div class="docs">
-		<Docs id={data.current.id}></Docs>
+		<Docs id={data.current.id} {livecode}></Docs>
 		<SolveButton bind:isSolved />
 	</div>
 
-	<Playground sourcecode={isSolved ? data.solutioncode : data.sourcecode} />
+	<Playground sourcecode={isSolved ? data.solutioncode : data.sourcecode} bind:livecode />
 </main>
 
 <style>

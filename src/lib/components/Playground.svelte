@@ -2,8 +2,8 @@
 	import Editor from './Editor.svelte';
 	import { PreviewStyles } from '$lib/preview-styles';
 
-	const { sourcecode } = $props();
-	let livecode = $state(sourcecode);
+	let { sourcecode, livecode = $bindable('') } = $props();
+	// let livecode = $state(sourcecode);
 
 	let previewSourceCode = $derived(`${PreviewStyles} ${livecode}`);
 </script>

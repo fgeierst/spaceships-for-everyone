@@ -1,26 +1,18 @@
 <script>
-	import { expect } from 'chai';
 	import Test from '$lib/components/Test.svelte';
-	import { getByRole } from '@testing-library/dom'
+	import Wcag from '$lib/components/Wcag.svelte'
+
 	let {livecode} = $props();
 </script>
 
 # 0.1 Hello World
 
-<!-- While this looks like a perfectly normal heading, something is not quite right. Open the browser dev tools and inspect the heading. -->
-
-<!-- ## Test 
-```js
-const heading = getByRole(iframe, 'heading', {level: 1});
-expect(heading).to.exist;
-```
+ While this looks like a perfectly normal heading, something is not quite right. Open the browser dev tools and inspect the heading. 
 
 <Test
 	{livecode}
-	testcode={() => {
-		const iframe = document.querySelector('iframe').contentDocument;
-		const heading = getByRole(iframe, 'heading', {level: 1});
-		expect(heading).to.exist;
-	}}
->
-</Test> -->
+	testFunction="const heading = getByRole(screen, 'heading');
+expect(heading).to.exist;"
+/>
+
+<Wcag ref_id="4.1.2" variant="card" />

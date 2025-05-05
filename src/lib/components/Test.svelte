@@ -80,6 +80,7 @@
 		flex-direction: column;
 		align-items: start;
 		gap: 1rem;
+		margin-block-end: 1rem;
 	}
 
 	iframe {
