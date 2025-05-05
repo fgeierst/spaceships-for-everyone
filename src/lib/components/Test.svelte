@@ -29,7 +29,12 @@
 		currentState = 'running';
 		await new Promise((r) => setTimeout(r, 500)); // to indicate test are running
 		try {
-			await eval(`(${testFunctionSource})()`);
+			await eval(`(
+				async () => {
+					const screen = document.querySelector('#testcontainer').contentDocument;
+					${testFunctionSource}
+				}
+			)()`);
 			currentState = 'passed';
 		} catch (error) {
 			currentState = 'failed';

@@ -8,11 +8,8 @@
 		title: 'Test',
 		component: Test,
 		args: {
-			testFunction: `async () => {
-	const screen = document.querySelector('#testcontainer').contentDocument;
-	const heading = getByRole(screen, 'heading', { level: 1 });
-	expect(heading).to.exist;
-}`,
+			testFunction: `const heading = getByRole(screen, 'heading', { level: 1 });
+expect(heading).to.exist;`,
 			livecode: '<h1>Hello World</h1>'
 		}
 	});
@@ -24,10 +21,7 @@
 	name="Failing"
 	args={{
 		livecode: '<button>Hello World</button>',
-		testFunction: `async () => {
-	const screen = document.querySelector('#testcontainer').contentDocument;
-	const button = getByRole(screen, 'button', { name: 'Hallo Welt'});
-	expect(button).to.exist;
-}`
+		testFunction: `const button = getByRole(screen, 'button', { name: 'Hallo Welt'});
+expect(button).to.exist;`
 	}}
 />
