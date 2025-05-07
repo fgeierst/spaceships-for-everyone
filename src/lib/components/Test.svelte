@@ -11,6 +11,7 @@
 		livecode: string;
 	};
 	let { livecode, testFunction }: Props = $props();
+	const id = $props.id();
 
 	type State = 'running' | 'passed' | 'failed';
 	let currentState: State = $state('running');
@@ -44,7 +45,12 @@
 	}
 </script>
 
-<div class="flow">
+<section class="flow" aria-labelledby={`heading-${id}`}>
+	<div class="header">
+		<span id={`heading-${id}`} class="heading">Test Runner</span>
+		<button onclick={runTests}><Icon name="play" alt="Run test" size={20} /></button>
+	</div>
+
 	<Editor
 		lang="javascript"
 		sourcecode={testFunction?.toString()}
@@ -60,8 +66,6 @@
 		id="testcontainer"
 	></iframe>
 
-	<button onclick={runTests}>Run Test</button>
-
 	<p class="test-result">
 		{#if currentState === 'running'}
 			<span class="running"><Icon name="circle-dash"></Icon></span>
@@ -72,15 +76,42 @@
 			<span class="failed"><Icon name="cross"></Icon></span> Test failed: {msg}
 		{/if}
 	</p>
-</div>
+</section>
 
 <style>
-	.flow {
+	section {
 		display: flex;
 		flex-direction: column;
-		align-items: start;
-		gap: 1rem;
 		margin-block-end: 1rem;
+		border-radius: var(--border-radius);
+		border: 1px solid var(--border-color);
+	}
+
+	.header {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 0.5rem;
+		padding: 0.1rem 0 0.1rem 0.3rem;
+		background-color: var(--surface-color-3);
+		border-block-end: 1px solid var(--border-color);
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+	}
+
+	.heading {
+		font-size: 85%;
+		font-weight: 500;
+		color: var(--text-color-1);
+	}
+
+	button {
+		background: none;
+		border: none;
+		display: grid;
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 
 	iframe {
@@ -91,7 +122,9 @@
 		display: flex;
 		align-items: start;
 		gap: 0.2rem;
-		margin-block: 0;
+		margin-block: 0 var(--border-radius);
+		padding: 0.1rem;
+		font-family: monospace;
 	}
 
 	.passed {

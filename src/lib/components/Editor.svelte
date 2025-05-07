@@ -9,7 +9,7 @@
 		livecode?: string;
 		lang?: 'html' | 'javascript';
 	};
-	let { sourcecode, livecode = $bindable(), lang = 'html' } = $props();
+	let { sourcecode, livecode = $bindable(), lang = 'html' }: Props = $props();
 	const id = $props.id();
 	let editor: EditorView | null = null;
 
@@ -57,7 +57,7 @@
 		border-block-end: 1px solid #ccc;
 
 		:global(.cm-focused) {
-			outline: none;
+			outline: var(--focus-width) solid var(--focus-color);
 		}
 	}
 </style>

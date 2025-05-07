@@ -4,15 +4,29 @@
 	box-sizing: border-box;
 }
 html {
+	scrollbar-gutter: stable;
 	font-family: system-ui;
+
+	--text-color: hsl(0, 0%, 5%);
+	--surface-color-1: hsl(0, 0%, 100%);
+	--surface-color-2: hsl(0, 0%, 98%);
+	--surface-color-3: hsl(0, 0%, 96%);
+
+	--focus-color: hsl(228 69% 54.5%);
+	--focus-width: 1.5px;
+
+	--border-color: hsl(0, 0%, 80%);
+	--border-radius: 0.3rem;
 }
 
 body {
 	margin: 0;
+	color: var(--text-color);
+	background-color: var(--surface-color-1);
 }
 
 :focus-visible {
-	outline: 1.5px solid black;
-	outline-offset: 1px;
-	border-radius: 1.5px;
+	outline: var(--focus-width) solid var(--focus-color);
+	outline-offset: var(--focus-width);
+	border-radius: var(--focus-width);
 }

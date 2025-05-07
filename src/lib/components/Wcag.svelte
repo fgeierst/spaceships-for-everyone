@@ -44,7 +44,7 @@
 <style>
 	.logo {
 		float: right;
-		border: solid #ccc;
+		border: solid var(--border-color);
 		border-width: 0 0 1px 1px;
 		margin: -0.5rem -0.5rem 0 0;
 		padding: 0.3rem;
@@ -57,8 +57,8 @@
 	}
 
 	.card {
-		border: 1px solid #ccc;
-		border-radius: 0.3rem;
+		border: 1px solid var(--border-color);
+		border-radius: var(--border-radius);
 		padding: 0.5rem;
 		margin-block-end: 1rem;
 	}

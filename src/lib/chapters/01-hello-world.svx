@@ -9,10 +9,22 @@
 
  While this looks like a perfectly normal heading, something is not quite right. Open the browser dev tools and inspect the heading. 
 
+
+
+## How to test this
+
+### Dev Tools
+
+
+
+### Automated tests
+
 <Test
 	{livecode}
 	testFunction="const heading = getByRole(screen, 'heading');
 expect(heading).to.exist;"
 />
+
+## Further Reading
 
 <Wcag ref_id="4.1.2" variant="card" />
