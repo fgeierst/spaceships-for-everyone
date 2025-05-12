@@ -10,18 +10,14 @@
 For all user interface components, the name and role can be programmatically determined. — [Success Criterion 4.1.2 Name, Role,Value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html)
 
 
-<!-- ## Test 
-```js
-const button = getByRole(iframe, 'button', {name: 'Click me'});
-expect(button).to.exist;
-```
+## How to test this
+
+### Automated tests
 
 <Test
 	{livecode}
-	testcode={() => {
-		const iframe = document.querySelector('iframe').contentDocument;
-		const button = getByRole(iframe, 'button', {name: 'Click me'});
-		expect(button).to.exist;
-	}}
+    testFunction={`const button = getByRole(screen, 'button', {name: 'Click me'}); 
+	expect(button).to.exist;`}
 >
-</Test> -->
+</Test>
+

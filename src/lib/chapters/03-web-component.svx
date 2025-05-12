@@ -9,20 +9,14 @@
 
 What do you think is the the accessible name of this text input?
 
-<!-- ## Test 
-```js
-const shadowRoot = iframe.querySelector('my-input').shadowRoot;
-const input = getByRole(shadowRoot, 'textbox', {name: 'First Name'});
-expect(input).to.exist;
-```
+## How to test this
+
+### Automated tests
 
 <Test
 	{livecode}
-	testcode={() => {
-		const iframe = document.querySelector('iframe').contentDocument;
-		const shadowRoot = iframe.querySelector('my-input').shadowRoot;
-		const input = getByRole(shadowRoot, 'textbox', {name: 'First Name'});
-		expect(input).to.exist;
-	}}
+	testFunction={`const shadowRoot = screen.querySelector('my-input').shadowRoot;
+const input = getByRole(shadowRoot, 'textbox', {name: 'First Name'});
+expect(input).to.exist;`}
 >
-</Test> -->
+</Test>
