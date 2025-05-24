@@ -21,11 +21,6 @@
 </nav>
 
 <style>
-	h1 {
-		margin-block: 0;
-		font-size: inherit;
-	}
-
 	ul {
 		list-style: none;
 		padding: 0;

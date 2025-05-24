@@ -30,23 +30,9 @@
 		}
 	}
 
-	.preview,
-	.editor {
+	.preview {
 		width: 100%;
 		height: 100%;
-	}
-
-	.editor {
-		border-block-end: 1px solid #ccc;
-
-		@container (min-width: 600px) {
-			border-block-end: none;
-			border-inline-end: 1px solid #ccc;
-		}
-
-		:global(.cm-focused) {
-			outline: none;
-		}
 	}
 
 	.preview {
